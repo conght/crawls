@@ -1,0 +1,29 @@
+2017-12-17 16:16:11 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: TianYa)
+2017-12-17 16:16:11 [scrapy.utils.log] INFO: Overridden settings: {'BOT_NAME': 'TianYa', 'COOKIES_ENABLED': False, 'LOG_FILE': 'crawlLog', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'TianYa.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['TianYa.spiders']}
+2017-12-17 16:16:12 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2017-12-17 16:16:12 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-12-17 16:16:12 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-12-17 16:16:12 [scrapy.middleware] INFO: Enabled item pipelines:
+['TianYa.pipelines.TianyaPipeline']
+2017-12-17 16:16:12 [scrapy.core.engine] INFO: Spider opened
+2017-12-17 16:16:12 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
