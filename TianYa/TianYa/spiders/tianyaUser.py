@@ -54,7 +54,7 @@ class tianyaBBSspider(CrawlSpider):
     start_urls = [
 
             #天涯论坛热帖榜  可以写多个用，分隔
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1",
+            "http://bbs.tianya.cn/list.jsp?item=funinfo&order=1",
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7592206",
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7585028",
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7580351",
@@ -71,12 +71,15 @@ class tianyaBBSspider(CrawlSpider):
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7421062",
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7418307",
             #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7414865",
-            "http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7407382",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7407382",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7402097",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7299503",
 
          ]
     baseurl = 'http://bbs.tianya.cn'
 
     def in_the_set(self, article_time):
+        #print(article_time)
         time_str = article_time.split("：")[1]
         timeArray = time.strptime(time_str.strip(), "%Y-%m-%d %H:%M:%S")
         
