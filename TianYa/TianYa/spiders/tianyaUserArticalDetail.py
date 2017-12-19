@@ -54,6 +54,7 @@ class tianyaUserArticalDetail(CrawlSpider):
         article_content = sel.xpath(
             '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
         article_author = sel.xpath('//div[@id="post_head"]/div[2]/div[@class="atl-info"]/span[1]/a/@href').extract()
+        #article_time = sel.xpath('//div[@id="post_head"]/div[2]/div[@class="atl-info"]/span[1]/a/@href').extract()
 
         qa_content = sel.xpath(
             '//div[@class="wd-question"]/div[5]/div/text()').extract()
