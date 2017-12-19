@@ -10,7 +10,8 @@ baseurl = "http://www.tianya.cn/"
 
 input = open("/home/conght/CODES/crawls/TianYa/uuid")
 
-for uuid in input:
+count = 1
+for uuid in input:  
     if uuid != '' and uuid != None:
         try:
             uuid = uuid.replace('\n','').replace('\r','')
@@ -25,7 +26,11 @@ for uuid in input:
 
             response.close()
             print( uuid + "\t" + array2[0])
+            count=count + 1
             time.sleep(1)
-
+            if count == 10:
+                time.sleep(30)
+                count=1
         except:
             print(uuid + "\t" + "error")
+            time.sleep(3)
