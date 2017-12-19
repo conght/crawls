@@ -28,8 +28,8 @@ for uuid in input:
             print( uuid + "\t" + array2[0])
             count=count + 1
             time.sleep(1)
-            if count == 10:
-                time.sleep(30)
+            if count == 11:
+                time.sleep(60)
                 count=1
         except:
             print(uuid + "\t" + "error")
