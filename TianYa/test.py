@@ -12,4 +12,13 @@ def in_the_set(article_time):
         return False
 
 
-print(in_the_set("2017-12-17 23:51:28"))
+#print(in_the_set("2017-12-17 23:51:28"))
+
+
+input = open("/home/conght/CODES/crawls/TianYa/user_artical_list")
+for line in input:
+    articalIdArray = line.replace("\n","").replace("\r","").split("\t")
+    print(line)
+    print(len(articalIdArray))
+    articalIdArray = articalIdArray[1:]
+    articalIdArray = articalIdArray[:-1]

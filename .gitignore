@@ -2,3 +2,7 @@
 TianYa/crawlLog
 
 TianYa/workdir/*
+
+TianYa/TianYa/__pycache__/*
+
+TianYa/TianYa/spiders/__pycache__/*
