@@ -4,6 +4,7 @@
 import urllib.request
 import json
 import fileinput
+import time
 
 baseurl = "http://www.tianya.cn/"
 
@@ -24,6 +25,7 @@ for uuid in input:
 
             response.close()
             print( uuid + "\t" + array2[0])
+            time.sleep(1)
 
         except:
             print(uuid + "\t" + "error")
