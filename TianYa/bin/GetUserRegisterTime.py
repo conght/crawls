@@ -17,7 +17,7 @@ for uuid in input:
             uuid = uuid.replace('\n','').replace('\r','')
             result = uuid + "\t"
 
-            response = urllib.request.urlopen(baseurl + uuid)
+            response = urllib.request.urlopen(baseurl + uuid + "/bbs")
             buff = response.read()
             #显示
             html = buff.decode("utf8")
@@ -29,8 +29,8 @@ for uuid in input:
             count=count + 1
             #time.sleep(1)
             if count == 10:
-                time.sleep(60)
+                #time.sleep(60)
                 count=1
         except:
             print(uuid + "\t" + "error")
-            time.sleep(3)
+            #time.sleep(3)
