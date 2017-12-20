@@ -29,7 +29,7 @@ for uuid in input:
             if (rows1 != None):
                 time1 = rows1[0]['compose_time']
             if (rows2 != None):
-                time2 = rows2[0]['compose_time']
+                time2 = rows2[0]['reply_time']
 
             time = time1
             if (time2 > time1):
