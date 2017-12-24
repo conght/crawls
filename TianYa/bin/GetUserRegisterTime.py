@@ -8,7 +8,7 @@ import time
 
 baseurl = "http://www.tianya.cn/"
 
-input = open("/home/conght/CODES/crawls/TianYa/uuid")
+input = open("/Users/conght/WORK/crawls/TianYa/uuid4registererror")
 
 count = 1
 for uuid in input:  
@@ -32,5 +32,6 @@ for uuid in input:
                 #time.sleep(60)
                 count=1
         except:
-            print(uuid + "\t" + "error")
+            pass
+            #print(uuid + "\t" + "error")
             #time.sleep(3)

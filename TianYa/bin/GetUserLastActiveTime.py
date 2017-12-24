@@ -8,7 +8,7 @@ import fileinput
 baseurl1 = "http://www.tianya.cn/api/bbsuser?method=userinfo.ice.getUserTotalArticleList&params.pageSize=100&params.bMore=true&params.kindId=-1&params.userId="
 baseurl2 = "http://www.tianya.cn/api/bbsuser?method=userinfo.ice.getUserTotalReplyList&params.pageSize=100&params.bMore=true&params.kindId=-1&params.userId="
 
-input = open("/home/conght/CODES/crawls/TianYa/uuid")
+input = open("/Users/conght/WORK/crawls/TianYa/datasets/user_last_active_time_error")
 
 for uuid in input:
     if uuid != '' and uuid != None:
