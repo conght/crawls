@@ -9,8 +9,8 @@
 class TianyaPipeline(object):
 
     def __init__(self):
-        #self.file = open('/Users/conght/WORK/crawls/TianYa/tianya.json', 'w')
-        self.file = open('/home/conght/CODES/crawls/TianYa/tianyaUser.json', 'w')
+        self.file = open('/Users/conght/WORK/crawls/TianYa/tianya.json', 'w')
+        #self.file = open('/home/conght/CODES/crawls/TianYa/tianyaUser.json', 'w')
  
  
     #def process_item(self, item, spider):
