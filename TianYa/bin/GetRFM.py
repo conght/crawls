@@ -126,9 +126,7 @@ for (uuid,rtime) in registerTime.items():
     #if item[2] < minF:
     #    minF = item[2]
 
-    wordCountItem = wordCount.get(uuid, None)
-    if wordCountItem == None:
-        continue
+    wordCountItem = wordCount.get(uuid, '0')
     if int(articleCountItem) == 0:
         item[4] = 0
     else:
@@ -142,4 +140,8 @@ for (uuid,rtime) in registerTime.items():
 for (uuid, item) in aggData.items():
     print(uuid+"\t"+str(item[0])+"\t"+str(item[1])+"\t"+str(item[2])+"\t"+str(item[3])+"\t"+str(item[4])+"\t"+str(item[5])+"\t"+str(item[6])+"\t"+str(item[7]))
 
-print(str(maxF)+" "+str(minF))
+#print(str(len(registerTime)))
+#print(str(len(lastActiveTime)))
+#print(str(len(articleCount)))
+#print(str(len(wordCount)))
+#print(str(len(aggData)))
