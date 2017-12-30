@@ -8,16 +8,17 @@ import time
 
 baseurl = "http://www.tianya.cn/"
 
-input = open("/Users/conght/WORK/crawls/TianYa/uuid4registererror")
+input = open("/Users/conght/WORK/crawls/TianYa/jinghua")
 
 count = 1
 for uuid in input:  
     if uuid != '' and uuid != None:
         try:
             uuid = uuid.replace('\n','').replace('\r','')
+            uuid = uuid.split("\t")[2]
             result = uuid + "\t"
 
-            response = urllib.request.urlopen(baseurl + uuid + "/bbs")
+            response = urllib.request.urlopen(uuid + "/bbs")
             buff = response.read()
             #显示
             html = buff.decode("utf8")
