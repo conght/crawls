@@ -3,6 +3,13 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
+from pylab import *  
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+
+from datetime import datetime
+
+import matplotlib.dates as mdates
+
 def drawR():
     plt.figure(figsize=(9, 20))
     plt.text(1,22200,'class 1 : > 180',color='lightcoral',ha='left')
@@ -94,5 +101,186 @@ def drawRFT():
     plt.ylim(0, +15000)
     plt.show()
 
+def drawRegisterNumber():
+    
+    input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-registertime")
+    X = []
+    Y = []
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[1])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y)
 
-drawRFT()
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('注册人数分布')
+    plt.ylabel('注册人数')
+    plt.xlabel('年份')
+    plt.ylim(0, max(Y)+20)
+    plt.show()
+
+
+def drawUserDistribution():
+    plt.figure(figsize=(5, 20))
+    plt.text(2,3400,'class 1 : 注册时间距现在超过720天',color='lightcoral',ha='left')
+    plt.text(2,3300,'class 2 : 注册时间距现在超过360天',color='blue',ha='left')
+    plt.text(2,3200,'class 3 : 注册时间距现在超过180天',color='darkorange',ha='left')
+    plt.text(2,3100,'class 4 : 注册时间距现在超过90天',color='green',ha='left')
+    n = 4
+    X = np.arange(n) + 1
+    # X是1,2,3,4,5,6,7,8,柱的个数
+    Y1 = [3220,23,3255-3244,2]#np.random.uniform(0.5, 1.0, n)
+
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.bar(X, Y1, width=0.35, facecolor='lightskyblue', edgecolor='white')
+    for x, y in zip(X, Y1):
+        plt.text(x, y + 0.05, '%d' % y, ha='center', va='bottom')
+    plt.title('用户注册时间分布')
+    plt.ylabel('样本数')
+    plt.xlabel('分类')
+    plt.ylim(0, +3500)
+    plt.show()
+
+def drawWordCount():
+    
+    input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-wordcount")
+    X = []
+    Y = []
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[3])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y)
+
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('精华帖平均字数分布')
+    plt.ylabel('平均字数')
+    plt.xlabel('年份')
+    plt.ylim(0, max(Y)+20)
+    plt.show()
+
+def drawJinghuaNumber():
+    
+    input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-tiezigeshu")
+    X = []
+    Y = []
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[1])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y)
+
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('精华帖个数分布')
+    plt.ylabel('个数')
+    plt.xlabel('年份')
+    plt.ylim(0, max(Y)+20)
+    plt.show()
+
+def drawJinghuaReplyNumber():
+    
+    input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-replycount")
+    X = []
+    Y = []
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[1])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y)
+
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('精华帖回复数分布')
+    plt.ylabel('回复数')
+    plt.xlabel('年份')
+    plt.ylim(100000, max(Y)+200)
+    plt.show()
+
+def drawJinghuaClickNumber():
+    
+    input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-clicknumber")
+    X = []
+    Y = []
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[1])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y//100000)
+
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('精华帖点击数分布')
+    plt.ylabel('点击数（十万）')
+    plt.xlabel('年份')
+    plt.ylim(0, max(Y)+200)
+    plt.show()
+
+drawJinghuaClickNumber()
