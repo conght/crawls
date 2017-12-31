@@ -283,4 +283,38 @@ def drawJinghuaClickNumber():
     plt.ylim(0, max(Y)+200)
     plt.show()
 
-drawJinghuaClickNumber()
+def drawUser():
+    
+    #input = open("/Users/conght/WORK/crawls/TianYa/jinghua-dataset/distrube-of-clicknumber")
+    X = ["2003-02", "2003-03", "2003-04", "2003-07", "2003-08", "2003-09", "2003-10", "2003-11", "2003-12", "2004-01", "2004-02", "2004-03", "2004-04", "2004-07"
+    , "2004-08","2004-10","2004-12","2005-04","2005-05","2005-06","2005-10","2005-11"
+    ,"2005-12","2006-02","2006-03"]
+    Y = [22, 8, 2, 2, 10, 4, 6, 1, 2, 1, 2, 1, 1, 2,1,1,2,1,5,6,1,3,1,1,9]
+    number_dict = {}
+    for line in input:
+        line = line.replace('\n','').replace('\r','')
+        #Y.append(int(line.split("\t")[1]))
+        number_dict[line.split("\t")[0].split("-")[0]] = number_dict.get(line.split("\t")[0].split("-")[0], 0) + int(line.split("\t")[1])
+    
+    for x, y in number_dict.items():
+        X.append(x)
+        Y.append(y//100000)
+
+    X_ = np.arange(len(Y))
+
+    # 生成横纵坐标信息
+    xs = [datetime.strptime(d, '%Y-%m').date() for d in X]
+    #ys = range(len(xs))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+    plt.figure(figsize=(len(Y), 20)) 
+    #Y2 = np.random.uniform(0.5, 1.0, n)
+    plt.plot(xs, Y, color='lightskyblue', label='Numbers of the register')
+    plt.title('精华帖点击数分布')
+    plt.ylabel('点击数（十万）')
+    plt.xlabel('年份')
+    plt.ylim(0, max(Y)+200)
+    plt.show()
+
+drawUser()
