@@ -4,6 +4,7 @@ import json
 import fileinput
 import time
 from datetime import date
+import csv
 
 def getRLabel(value):
     if (value <= 10):
@@ -19,13 +20,13 @@ def getRLabel(value):
 def getFLabel(value):
     if (value == 0):
         return 1
-    if (value <= 6021//4):
+    if (value <= 1000//4):
         return 5
-    if (value <= (6021//4)*2):
+    if (value <= (1000//4)*2):
         return 4
-    if (value <= (6021//4)*3):
+    if (value <= (1000//4)*3):
         return 3
-    if (value <= 6021):
+    if (value <= 1000):
         return 2
     return 1
 
@@ -59,10 +60,16 @@ def getRFTLevel(item):
         return 1
 
 #------------------- step.1--------------------#
-registerTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userregistertimeinfowithouterror")
-lastActiveTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userlastactivetimewithouterror")
-articleCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userarticalcountwithourerror")
-wordCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userarticalwordcountwithouterror")
+#registerTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userregistertimeinfowithouterror")
+#lastActiveTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userlastactivetimewithouterror")
+#articleCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userarticalcountwithourerror")
+#wordCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets/userarticalwordcountwithouterror")
+
+registerTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-registertime-withouterror")
+lastActiveTimeFile = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-lastactivetime-withouterror")
+articleCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-artcount")
+wordCountFile = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-totalwordcount")
+
 
 aggData = {}
 registerTime = {}
@@ -137,8 +144,28 @@ for (uuid,rtime) in registerTime.items():
     aggData[uuid] = item
 
 #------------------- step.4--------------------#
+
 for (uuid, item) in aggData.items():
     print(uuid+"\t"+str(item[0])+"\t"+str(item[1])+"\t"+str(item[2])+"\t"+str(item[3])+"\t"+str(item[4])+"\t"+str(item[5])+"\t"+str(item[6])+"\t"+str(item[7]))
+
+errorFile = open("rft_info.csv", 'w')  
+writeCSV = csv.writer(errorFile)
+writeCSV.writerow(["用户id","R","R分类","F","F分类","T","T分类","RFT","RFT分类"])
+for (uuid, item) in aggData.items():
+    row = []
+    row.append(uuid)
+    row.append(item[0])
+    row.append(item[1])
+    row.append(item[2])
+    row.append(item[3])
+    row.append(item[4])
+    row.append(item[5])
+    row.append(item[6])
+    row.append(item[7])
+    #print(uuid+"\t"+str(item[0])+"\t"+str(item[1])+"\t"+str(item[2])+"\t"+str(item[3])+"\t"+str(item[4])+"\t"+str(item[5])+"\t"+str(item[6])+"\t"+str(item[7]))
+    writeCSV.writerow(row)
+
+errorFile.close()
 
 #print(str(len(registerTime)))
 #print(str(len(lastActiveTime)))

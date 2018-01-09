@@ -5,20 +5,27 @@ import urllib.request
 import json
 import fileinput
 import time
+import sys
 
 baseurl = "http://www.tianya.cn/"
 
-input = open("/Users/conght/WORK/crawls/TianYa/jinghua")
+#input = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid_20180103")
+input = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-error")
 
 count = 1
+flag = False
 for uuid in input:  
     if uuid != '' and uuid != None:
         try:
             uuid = uuid.replace('\n','').replace('\r','')
-            uuid = uuid.split("\t")[2]
-            result = uuid + "\t"
+            result = uuid
 
-            response = urllib.request.urlopen(uuid + "/bbs")
+            if (uuid == "17314108"):
+                flag = True
+                continue
+            if flag == False:
+                continue
+            response = urllib.request.urlopen(baseurl+uuid + "/bbs")
             buff = response.read()
             #显示
             html = buff.decode("utf8")
@@ -27,12 +34,8 @@ for uuid in input:
 
             response.close()
             print( uuid + "\t" + array2[0])
-            count=count + 1
-            #time.sleep(1)
-            if count == 10:
-                #time.sleep(60)
-                count=1
+            sys.stdout.flush()
+
         except:
-            pass
-            #print(uuid + "\t" + "error")
-            #time.sleep(3)
+            print( uuid + "\terror")
+            sys.stdout.flush()

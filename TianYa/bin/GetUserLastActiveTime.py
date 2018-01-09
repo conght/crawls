@@ -4,17 +4,18 @@
 import urllib.request
 import json
 import fileinput
+import sys
 
 baseurl1 = "http://www.tianya.cn/api/bbsuser?method=userinfo.ice.getUserTotalArticleList&params.pageSize=100&params.bMore=true&params.kindId=-1&params.userId="
 baseurl2 = "http://www.tianya.cn/api/bbsuser?method=userinfo.ice.getUserTotalReplyList&params.pageSize=100&params.bMore=true&params.kindId=-1&params.userId="
 
-input = open("/Users/conght/WORK/crawls/TianYa/datasets/user_last_active_time_error")
+input = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid_20180103")
 
 for uuid in input:
     if uuid != '' and uuid != None:
         try:
             uuid = uuid.replace('\n','').replace('\r','')
-            result = uuid + "\t"
+            #result = uuid + "\t"
 
             response1 = urllib.request.urlopen(baseurl1 + uuid)
             response2 = urllib.request.urlopen(baseurl2 + uuid)
@@ -36,6 +37,8 @@ for uuid in input:
                 time = time2
         
             print(uuid + "\t" + time)
+            sys.stdout.flush()
 
         except:
             print(uuid + "\t" + "error")
+            sys.stdout.flush()

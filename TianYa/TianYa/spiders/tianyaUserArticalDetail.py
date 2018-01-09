@@ -32,7 +32,7 @@ class tianyaUserArticalDetail(CrawlSpider):
     ]
 
     def __init__(self):
-        input = open("/home/conght/CODES/crawls/TianYa/user_artical_list")
+        input = open("/Users/conght/WORK/crawls/TianYa/datasets-v2/uuid-articlelist")
         for line in input:
             articalIdArray = line.replace("\n","").replace("\r","").split("\t")
             if len(articalIdArray) < 3:
@@ -64,5 +64,7 @@ class tianyaUserArticalDetail(CrawlSpider):
 
         if len(article_content) > 0:
             print(article_author[0] + "\t" + str(len(article_content[0].strip())))
+            sys.stdout.flush()
         if len(qa_content) > 0:
             print(qa_author[0] + "\t" + str(len(qa_content[0].strip())))
+            sys.stdout.flush()

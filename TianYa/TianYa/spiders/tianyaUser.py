@@ -54,27 +54,16 @@ class tianyaBBSspider(CrawlSpider):
     start_urls = [
 
             #天涯论坛热帖榜  可以写多个用，分隔
-            "http://bbs.tianya.cn/list.jsp?item=funinfo&order=1",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7592206",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7585028",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7580351",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7531426",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7524709",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7504328",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7501067",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7491075",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7490475",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7489807",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7466113",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7453745",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7440342",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7421062",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7418307",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7414865",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7407382",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7402097",
-            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7299503",
-
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7503789",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7496397",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7495711",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7489395",
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7487786"
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7466831"
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7452275"
+            #"http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7334712"
+            "http://bbs.tianya.cn/list.jsp?item=funinfo&order=1&nextid=7298866"
          ]
     baseurl = 'http://bbs.tianya.cn'
 
@@ -84,7 +73,8 @@ class tianyaBBSspider(CrawlSpider):
         timeArray = time.strptime(time_str.strip(), "%Y-%m-%d %H:%M:%S")
         
         if (timeArray.tm_year == 2016 and timeArray.tm_mon >= 11) or (timeArray.tm_year == 2017 and timeArray.tm_mon <= 9):
-            if timeArray.tm_wday != 2:
+            #if timeArray.tm_wday != 2:
+            if timeArray.tm_wday != 3 and timeArray.tm_wday != 4 and timeArray.tm_wday != 5:
                 return False
             if (timeArray.tm_hour < 10 or timeArray.tm_hour > 22):
                 return False
@@ -103,6 +93,7 @@ class tianyaBBSspider(CrawlSpider):
         
         #print("article_url lens is " + str(len(article_url)))
         print("current article_url is " + response.url)
+        sys.stdout.flush()
         for url in article_url:
             #拼接url
             urll = urljoin(self.baseurl,url)
@@ -132,8 +123,9 @@ class tianyaBBSspider(CrawlSpider):
                 #调用parse_user_item解析文章内容
                 #ua = random.choice(self.user_agent_list)#随机抽取User-Agent
                 print ("user_url is " + url)
-                request = scrapy.Request(url,callback=self.parse_user_item)
-                yield request
+                sys.stdout.flush()
+                #request = scrapy.Request(url,callback=self.parse_user_item)
+                #yield request
                 #self.save_user_id(url)
             
             if (len(is_end_page) == 0 or is_end_page[0] != "下页") and len(next_page_url) > 0:
